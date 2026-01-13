@@ -1,14 +1,16 @@
 import requests
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import os
 #from config import settings 
 #from config.settings import API_KEY, BASE_URL
-
+import streamlit as st
 
 # Load environment variables from .env file
-load_dotenv()
+#load_dotenv()
 
-API_KEY = os.getenv("OPENWEATHER_API_KEY")
+#API_KEY = os.getenv("OPENWEATHER_API_KEY")
+
+API_KEY = st.secrets["OPENWEATHER_API_KEY"]
 
 BASE_URL = "https://api.openweathermap.org/data/2.5"
 
@@ -29,4 +31,5 @@ def fetch_forecast_weather(city):
         "appid": API_KEY,
         "units": "metric"
     }
+
     return requests.get(url, params=params).json()
